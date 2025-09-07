@@ -1,0 +1,70 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+.pnpm-debug.log*
+.npm/
+.yarn/
+.cache/
+.eslintcache
+.nyc_output/
+coverage/
+lcov-report/
+dist/
+build/
+.next/
+*.tsbuildinfo
+.node
+
+# Compiled JavaScript
+*.js
+*.js.map
+!src/**/*.js
+!src/**/*.js.map
+
+# Environment Variables
+.env
+.env.*
+!.env.example
+credentials.*
+
+# Logs
+logs/
+*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyd
+*.pyo
+*.egg-info/
+.venv/
+venv/
+env/
+/htmlcov/
+.tox/
+.conda/
+.pytest_cache/
+.ruff_cache/
+.pydevproject
+lib/
+bin/
+share/
+pyvenv.cfg
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.project
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Misc
+*.swp
+*.swo
+*.bak
+.dockerignore
