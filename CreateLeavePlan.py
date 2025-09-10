@@ -94,6 +94,8 @@ class CreateLeavePlan:
       print("\nLet's create you a leave plan")
       self.intro_given = True
 
+    print("Creating leave plan...")
+
     full_context = build_context(state)
     parsed_response = self.llm_chain.invoke({"full_context": full_context})
 

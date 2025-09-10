@@ -108,6 +108,8 @@ class CreateStayPlan:
       print("\nLet's create you a stay and defend plan")
       self.intro_given = True
 
+    print("Creating stay and defend plan...")
+
     full_context = build_context(state)
     parsed_response = self.llm_chain.invoke({"full_context": full_context})
 

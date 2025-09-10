@@ -2,7 +2,6 @@ from StateTypes import GraphState, RiskAnalysis
 from context_utils import build_context
 from langchain_core.output_parsers import PydanticOutputParser
 from langchain_core.prompts import PromptTemplate
-from pprint import pprint
 
 risk_analysis_parser = PydanticOutputParser(pydantic_object=RiskAnalysis)
 
@@ -27,9 +26,9 @@ through a structured questioning process to collect all necessary data points
 required for accurate risk evaluation. Assess and categorise risk levels 
 across multiple factors including vegetation proximity, topography, access routes, 
 weather patterns, and local fire history. Provide clear risk ratings using lowercase 
-status values (high, low, unsure) for each assessed category and deliver a 
+status values (high, low, unclear) for each assessed category and deliver a 
 comprehensive risk profile that will inform subsequent stages of the bushfire planning 
-process. Use a rating of unsure along with questions for me when you need more information.
+process. Use a rating of unclear along with questions for me when you need more information.
 
 **Objective**
 Create a detailed and accurate bushfire risk profile that serves as the foundation 
@@ -61,16 +60,16 @@ Risk categorisation should be presented as:
 - Access limitations: high/low
 - Overall risk rating: high/low
 
-Your life depends on you conducting a thorough and systematic risk assessment 
+It is crucial that you conduct a thorough and systematic risk assessment 
 that captures every critical factor needed for bushfire survival planning. 
 Missing or inadequately assessing any risk factor could compromise the entire 
 bushfire plan and potentially endanger lives. Be methodical, comprehensive, 
 and ensure no stone is left unturned in evaluating bushfire risks.
 
-Next Steps:
+**Next Steps**
 
 Record your risk assessment ('low', 'high', 'unclear') in risk_level.
-Use 'unclear' if you you ned to ask more questions. Record your questions in questions.
+Use 'unclear' if you you need to ask more questions. Record your questions in questions.
 Do not ask the same question more than once.
 
 If you have determined a High or Low risk, conclude your response by showing
@@ -94,20 +93,20 @@ class AssessRisk:
     """
     Assesses bushfire risk using an LLM and structured parsing.
     """
-
-    # pprint(state)
-
     if not self.intro_given:
-      print("\nLet's assess the risk first")
+      print("\nLet's assess the risk first\n")
       self.intro_given = True
+
+    print("\nAssessing Risk...")
 
     full_context = build_context(state)
     parsed_response = self.llm_chain.invoke({"full_context": full_context})
 
     if parsed_response.risk_level != 'unclear':
       print("\n--------")
+      print(f"Summary: {parsed_response.message}\n")
+      print(f"Assessment: {parsed_response.assessment}\n")
       print(f"Risk Assessment: {parsed_response.risk_level}")
-      print(f"Reason: {parsed_response.message}")
       print("--------\n")
 
     return {

@@ -71,17 +71,21 @@ class AssessDefence:
     """
 
     if not self.intro_given:
-      print("\nLet's assess your capability of defending your property against bushfire")
+      print("\nLet's assess your capability of defending your property against bushfire\n")
       self.intro_given = True
+
+    print("\nAssessing stay and defend capability...")
 
     full_context = build_context(state)
     parsed_response = self.llm_chain.invoke({"full_context": full_context})
 
     if parsed_response.capability_level != 'unclear':
       print("\n--------")
+      print(f"Summary: {parsed_response.message}\n")
+      print(f"Assessment: {parsed_response.assessment}\n")
       print(f"Defence Assessment: {parsed_response.capability_level}")
-      print(f"Reason: {parsed_response.message}")
       print("--------\n")
+      
 
     return {
       "defence_assessment": parsed_response,

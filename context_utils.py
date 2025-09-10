@@ -15,9 +15,6 @@ def build_context(state: GraphState):
     if state.user_motivation:
         context_parts.append(f"User's reason for creating bushfire plan: {state.user_motivation}")
     
-    if state.today:
-        context_parts.append(f"Today: {state.today}")
-    
     for msg in state.messages:
         context_parts.append(msg.content)
 

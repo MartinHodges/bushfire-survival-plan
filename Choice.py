@@ -1,17 +1,13 @@
 from StateTypes import GraphState
 from context_utils import check_quit
-from pprint import pprint
 
-class Choice:
-  def __init__(self, llm, section, choice, options):
-      self.llm = llm
+class AskChoice:
+  def __init__(self, section, choice, options):
       self.section = section
       self.choice = choice
       self.options = options
 
   def __call__(self, state: GraphState):
-
-    # pprint(state)
 
     print("\nI need you to make a decision.")
 

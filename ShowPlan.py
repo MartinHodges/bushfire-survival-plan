@@ -62,9 +62,10 @@ class ShowPlan:
     """
     Create a bushfire plan based on the information gathered
     """
+    print("Entering ShowPlan")
 
     if not self.intro_given:
-      print("\nHere is your plan")
+      print("\nDrafting your plan")
       self.intro_given = True
 
     full_context = build_context(state)
