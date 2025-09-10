@@ -29,12 +29,7 @@ class AskChoice:
 
     choices_made[self.choice] = user_input
     
-    # Update choice_section directly since it's already working for choices_made
     if hasattr(choice_section, 'last_choice'):
         choice_section.last_choice = user_input
     
-    choice_location = f"{self.section}.choice"
-
-    return {
-       choice_location: choice_section
-    }
+    return {}
